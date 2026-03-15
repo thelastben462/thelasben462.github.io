@@ -3,78 +3,154 @@
 <head>
   <title>Smart Remote Listening Device</title>
   <style>
-    body {
-      background-color: #dce8f5;
-      font-family: Georgia, serif;
-      color: #1a2a4a;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000000;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ff00;
+      padding: 40px;
+      line-height: 1.8;
+    }
+
+    /* Blinking cursor effect */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Top header */
+    .header {
+      border: 1px solid #00ff00;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 42px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #00ff00;
+    }
+
+    .header .subtitle {
+      font-size: 14px;
+      color: #008800;
+      margin-top: 10px;
+      letter-spacing: 3px;
+    }
+
+    .header .authors {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #00cc00;
+    }
+
+    /* Prompt line before each section */
+    .prompt {
+      color: #008800;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #005500;
+      margin-bottom: 6px;
+    }
+
+    /* Section block */
+    .section {
+      border-left: 2px solid #00ff00;
+      padding-left: 20px;
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      color: #00ff00;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      font-size: 14px;
+      color: #00cc00;
+      max-width: 860px;
+    }
+
+    /* Blinking cursor at end of paragraphs */
+    .cursor::after {
+      content: '█';
+      animation: blink 1s infinite;
+      color: #00ff00;
+    }
+
+    /* References links */
+    a {
+      color: #00ff00;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+
+    ul {
+      list-style: none;
       padding: 0;
     }
 
-    .title-box {
-      border: 3px solid #1a2a4a;
-      margin: 40px;
-      padding: 40px;
-      text-align: center;
-      background-color: white;
-      border-radius: 12px;
+    ul li::before {
+      content: '> ';
+      color: #008800;
     }
 
-    .title-box h1 {
-      font-size: 64px;
-      font-weight: 900;
-      color: #1a2a4a;
-      margin: 0;
-      text-transform: uppercase;
+    ul li {
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #00cc00;
     }
 
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px 40px;
-      text-align: center;
-    }
-
-    .pill {
-      display: inline-block;
-      background-color: #c8d8ee;
-      color: #1a2a4a;
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      border-top: 1px solid #003300;
+      padding-top: 20px;
       font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      font-size: 32px;
-      color: #1a3a7a;
-      margin-top: 8px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #2a3a5a;
+      color: #004400;
+      text-align: center;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Title banner -->
-  <div class="title-box">
+  <!-- Header -->
+  <div class="header">
+    <div class="section-label">// EEC 172 — Final Project</div>
     <h1>Smart Remote<br>Listening Device</h1>
-    <p><strong>Benjamin Lee</strong> — blelee@ucdavis.edu</p>
-    <p><strong>Theo Rybnicek</strong> — tgrybnicek@ucdavis.edu</p>
-    <p>University of California, Davis — College of Engineering</p>
+    <div class="subtitle">[ EMBEDDED SYSTEMS — UC DAVIS ]</div>
+    <div class="authors">
+      <p>Benjamin Lee — blelee@ucdavis.edu</p>
+      <p>Theo Rybnicek — tgrybnicek@ucdavis.edu</p>
+    </div>
   </div>
 
-  <!-- Main content -->
-  <div class="content">
-
-    <span class="pill">Abstract</span>
+  <!-- Abstract -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Abstract</h2>
     <p>The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
     The purpose of the project was to create a system capable of monitoring its surroundings, detecting relevant events, recording audio,
     and sending alerts or data to a remote user. The final implementation used a microphone connected through the ADC for sound
@@ -83,18 +159,26 @@
     into chunks, and transmitted through the AWS IoT device shadow. A cloud side process was then intended to reassemble the audio
     data into a WAV file and provide access to the user through email. The system also included a state machine for arming, monitoring,
     recording, transmitting audio, and sending tamper alerts.</p>
+  </div>
 
-    <span class="pill">Background</span>
+  <!-- Background -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Background</h2>
     <p>This project used the TI CC3200 LaunchPad as the main hardware platform for developing an embedded monitoring system.
-    The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement through the 
-    onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using 
-    AWS IoT services. The intended features include audio capture, activity notifications, tamper alerts, and possible speech to 
-    text functionality as a stretch goal. The plan was to also implement a high level state based workflow in which the device would 
-    remain idle while monitoring, transition into recording or tamper states when triggered, and then notify the user before returning 
-    to monitoring. The final code met all these goals with the exception of text to speech by implementing a complete embedded state 
+    The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement through the
+    onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using
+    AWS IoT services. The intended features include audio capture, activity notifications, tamper alerts, and possible speech to
+    text functionality as a stretch goal. The plan was to also implement a high level state based workflow in which the device would
+    remain idle while monitoring, transition into recording or tamper states when triggered, and then notify the user before returning
+    to monitoring. The final code met all these goals with the exception of text to speech by implementing a complete embedded state
     machine with disarmed, idle, recording, audio sending, tamper sending, and error states.</p>
+  </div>
 
-    <span class="pill">Goals</span>
+  <!-- Goals -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Goals</h2>
     <p>The first goal of the project was to implement a minimal working monitoring device that could detect sound through a microphone
     and capture raw audio data using the ADC. This required configuring the ADC on the CC3200, collecting samples, and storing them in
     a memory buffer. The second goal was to extend the basic monitoring behavior by adding event driven system responses, specifically
@@ -104,53 +188,80 @@
     speech to text conversion and keyword recognition. In the final implementation, the system successfully incorporated sound
     threshold detection, accelerometer based tamper detection, state based device arming and disarming through a pushbutton,
     and chunked base64 audio transmission through the AWS IoT shadow.</p>
+  </div>
 
-    <span class="pill">Methods</span>
+  <!-- Methods -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Methods</h2>
     <p>All software development and testing were performed using Code Composer Studio and the TI CC3200 support libraries.
     The implementation used the SimpleLink networking stack, TI driver libraries, UART terminal output, ADC functions, GPIO access,
     timer delays, and I2C communication with the built in BMA222 accelerometer. The device behavior was organized using a state machine
     with the states disarmed, idle, recording, sending audio, sending tamper, and error. This matched the high level system behavior
     proposed, where the device transitions between setup, monitoring, event detection, notification, and return to idle operation.
-    The system first initialized the board, pin multiplexing, terminal, ADC, and accelerometer. It then connected to Wi-Fi, set the 
-    device time, and sent a startup notification over TLS to AWS IoT. The device began in a disarmed state and waited for the user 
-    to press SW3 to arm it. Once armed, the program calibrated both the microphone baseline and the accelerometer baseline so that 
-    future changes could be compared against normal conditions. During monitoring, the system periodically checked for either a button 
-    press to disarm, a tamper event from the accelerometer, or a noise event from the microphone input. This allowed the device to 
+    The system first initialized the board, pin multiplexing, terminal, ADC, and accelerometer. It then connected to Wi-Fi, set the
+    device time, and sent a startup notification over TLS to AWS IoT. The device began in a disarmed state and waited for the user
+    to press SW3 to arm it. Once armed, the program calibrated both the microphone baseline and the accelerometer baseline so that
+    future changes could be compared against normal conditions. During monitoring, the system periodically checked for either a button
+    press to disarm, a tamper event from the accelerometer, or a noise event from the microphone input. This allowed the device to
     behave like a real event driven monitoring platform rather than continuously transmitting unnecessary data.
-    The microphone was sampled through ADC channel 1. A baseline value was first measured using a number of initial samples, and future 
-    audio input was compared against this average to determine whether meaningful sound was present. A noise detection algorithm 
-    calculated average deviation from the baseline over a short window of samples. If the average deviation exceeded the threshold, 
-    the system interpreted that as an activity event and entered the recording state. During recording, the code collected approximately 
-    10 seconds of audio at a practical sample rate of 4000 Hz. Each 14 bit ADC sample was reduced to an 8 bit value before being stored 
+    The microphone was sampled through ADC channel 1. A baseline value was first measured using a number of initial samples, and future
+    audio input was compared against this average to determine whether meaningful sound was present. A noise detection algorithm
+    calculated average deviation from the baseline over a short window of samples. If the average deviation exceeded the threshold,
+    the system interpreted that as an activity event and entered the recording state. During recording, the code collected approximately
+    10 seconds of audio at a practical sample rate of 4000 Hz. Each 14 bit ADC sample was reduced to an 8 bit value before being stored
     in the audio buffer, which allowed the data to be more manageable for transmission.
     The built in BMA222 accelerometer was used for tamper detection. After calibration, the device repeatedly read the X, Y, and Z axes
     and compared them to the stored baseline values. If the total change across the axes exceeded the defined tamper threshold, the system
     treated that as a movement or interference event and sent a tamper alert.
     By chunking the raw data bytes from the CC3200 to AWS, a Lambda function is created to act as the cloud-side brain of the system.
-    It waits for the messages from the board, and upon arrival, decides what to do to them, triggered by the IoT Rule every single time 
-    the CC3200 posts a shadow update. The function handles two potential situations, one dealing with a tamper alert, another that decodes 
-    and emails the audio file.</p>
+    It waits for the messages from the board, and upon arrival, decides what to do to them, triggered by the IoT Rule every single time
+    the CC3200 posts a shadow update. The function handles two potential situations, one dealing with a tamper alert, another that decodes
+    and emails the audio file. The solution to split into 8 pieces is viable as any more additional chunks will continue to add to the
+    time after recording. Lambda uses S3 buckets to extract the stored chunks and functions when it receives 8 chunks in total. Once the
+    last chunks arrive, it stitches them back together into the original 40,000 byte audio sequence, appends a 44-byte WAV header,
+    and generates a presigned URL link that gets emailed to the user.</p>
+  </div>
 
-    <span class="pill">Discussion</span>
+  <!-- Discussion -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Discussion</h2>
     <p>The primary challenge we faced when implementing our design was the data limit of the device shadow.
     There was a hard set 8kB limit per post. At a reasonable sample rate that resulted in only 1 second of distinguishable audio
-    being sent to the user. We explored a few different solutions including direct s3 bucket capture but ultimately ended up using
+    being sent to the user. We explored a few different solutions including direct S3 bucket capture but ultimately ended up using
     device memory to store larger recordings and then post them in multiple chunks. The quality of the microphone was also a minor
     hiccup which made the sent audio higher pitched but still distinguishable.</p>
+  </div>
 
-    <span class="pill">Contributions</span>
+  <!-- Contributions -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Contributions</h2>
     <p>Theo implemented the ADC sampling, state machine, tamper detection, and base64 encoding method within Code Composer
     while Benjamin handled the chunking architecture and Lambda implementation with S3 buckets in AWS.</p>
+  </div>
 
-    <span class="pill">Acknowledgments</span>
+  <!-- Acknowledgments -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// Acknowledgments</h2>
     <p>The authors would like to thank the EEC 172 course staff regarding their assistance and providing references used for the lab.</p>
+  </div>
 
-    <span class="pill">References</span>
-    <ul style="list-style: none; padding: 0;">
-      <li><a href="https://www.ti.com/product/CC3200" style="color: #1a3a7a;">Texas Instruments, "CC3200 SimpleLink Wi-Fi and IoT Solution with MCU Datasheet"</a></li>
-      <li><a href="https://software-dl.ti.com/ecs/cc31xx/APIs/public/cc32xx_peripherals/latest/html/index.html" style="color: #1a3a7a;">Texas Instruments, "CC3200 Peripheral Driver Library User's Guide"</a></li>
+  <!-- References -->
+  <div class="section">
+    <div class="prompt">> loading section...</div>
+    <h2>// References</h2>
+    <ul>
+      <li><a href="https://www.ti.com/product/CC3200">Texas Instruments, "CC3200 SimpleLink Wi-Fi and IoT Solution with MCU Datasheet"</a></li>
+      <li><a href="https://software-dl.ti.com/ecs/cc31xx/APIs/public/cc32xx_peripherals/latest/html/index.html">Texas Instruments, "CC3200 Peripheral Driver Library User's Guide"</a></li>
     </ul>
+  </div>
 
+  <!-- Footer -->
+  <div class="footer">
+    <p>[ END OF TRANSMISSION ] — UC DAVIS EEC 172 — 2025 <span style="animation: blink 1s infinite; display: inline-block;">█</span></p>
   </div>
 
 </body>
