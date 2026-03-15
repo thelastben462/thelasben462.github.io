@@ -12,72 +12,64 @@
     body {
       background-color: #000000;
       font-family: 'Courier New', Courier, monospace;
-      color: #00ff00;
+      color: #ffffff;
       padding: 40px;
       line-height: 1.8;
     }
 
-    /* Blinking cursor effect */
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
 
-    /* Top header */
+    /* Triangle header using clip-path */
     .header {
-      border: 1px solid #00ff00;
-      padding: 30px;
+      background-color: #ffffff;
+      color: #000000;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       text-align: center;
-      margin-bottom: 40px;
+      padding: 80px 40px 60px;
+      margin-bottom: 60px;
+      width: 100%;
     }
 
     .header h1 {
-      font-size: 42px;
+      font-size: 32px;
       font-weight: bold;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: #00ff00;
+      color: #000000;
+      padding-top: 60px;
     }
 
     .header .subtitle {
-      font-size: 14px;
-      color: #008800;
-      margin-top: 10px;
+      font-size: 12px;
+      color: #333333;
+      margin-top: 8px;
       letter-spacing: 3px;
     }
 
     .header .authors {
-      margin-top: 20px;
-      font-size: 13px;
-      color: #00cc00;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #222222;
     }
 
-    /* Prompt line before each section */
     .prompt {
-      color: #008800;
+      color: #666666;
       font-size: 13px;
       margin-bottom: 4px;
     }
 
-    /* Section label */
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #005500;
-      margin-bottom: 6px;
-    }
-
-    /* Section block */
     .section {
-      border-left: 2px solid #00ff00;
+      border-left: 2px solid #ffffff;
       padding-left: 20px;
       margin-bottom: 40px;
     }
 
     .section h2 {
       font-size: 18px;
-      color: #00ff00;
+      color: #ffffff;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 12px;
@@ -85,25 +77,17 @@
 
     .section p {
       font-size: 14px;
-      color: #00cc00;
+      color: #cccccc;
       max-width: 860px;
     }
 
-    /* Blinking cursor at end of paragraphs */
-    .cursor::after {
-      content: '█';
-      animation: blink 1s infinite;
-      color: #00ff00;
-    }
-
-    /* References links */
     a {
-      color: #00ff00;
+      color: #ffffff;
       text-decoration: underline;
     }
 
     a:hover {
-      color: #ffffff;
+      color: #aaaaaa;
     }
 
     ul {
@@ -113,34 +97,37 @@
 
     ul li::before {
       content: '> ';
-      color: #008800;
+      color: #666666;
     }
 
     ul li {
       margin-bottom: 8px;
       font-size: 14px;
-      color: #00cc00;
+      color: #cccccc;
     }
 
-    /* Footer */
     .footer {
       margin-top: 60px;
-      border-top: 1px solid #003300;
+      border-top: 1px solid #333333;
       padding-top: 20px;
       font-size: 12px;
-      color: #004400;
+      color: #555555;
       text-align: center;
       letter-spacing: 2px;
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Triangle Header -->
   <div class="header">
-    <div class="section-label">// EEC 172 — Final Project</div>
     <h1>Smart Remote<br>Listening Device</h1>
-    <div class="subtitle">[ EMBEDDED SYSTEMS — UC DAVIS ]</div>
+    <div class="subtitle">[ EEC 172 — UC DAVIS ]</div>
     <div class="authors">
       <p>Benjamin Lee — blelee@ucdavis.edu</p>
       <p>Theo Rybnicek — tgrybnicek@ucdavis.edu</p>
@@ -217,9 +204,8 @@
     By chunking the raw data bytes from the CC3200 to AWS, a Lambda function is created to act as the cloud-side brain of the system.
     It waits for the messages from the board, and upon arrival, decides what to do to them, triggered by the IoT Rule every single time
     the CC3200 posts a shadow update. The function handles two potential situations, one dealing with a tamper alert, another that decodes
-    and emails the audio file. The solution to split into 8 pieces is viable as any more additional chunks will continue to add to the
-    time after recording. Lambda uses S3 buckets to extract the stored chunks and functions when it receives 8 chunks in total. Once the
-    last chunks arrive, it stitches them back together into the original 40,000 byte audio sequence, appends a 44-byte WAV header,
+    and emails the audio file. Lambda uses S3 buckets to extract the stored chunks and functions when it receives 8 chunks in total. Once
+    the last chunks arrive, it stitches them back together into the original 40,000 byte audio sequence, appends a 44-byte WAV header,
     and generates a presigned URL link that gets emailed to the user.</p>
   </div>
 
@@ -261,7 +247,7 @@
 
   <!-- Footer -->
   <div class="footer">
-    <p>[ END OF TRANSMISSION ] — UC DAVIS EEC 172 — 2025 <span style="animation: blink 1s infinite; display: inline-block;">█</span></p>
+    <p>[ END OF TRANSMISSION ] — UC DAVIS EEC 172 — 2025 <span class="blink">█</span></p>
   </div>
 
 </body>
