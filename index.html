@@ -154,28 +154,19 @@
   </div>
 
   <!-- Row 1: Abstract + Background -->
-  <div class="grid">
+  <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
-      <h2>// Abstract</h2>
-      <p>The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
+      <h2>// Project Description</h2>
+      <p>      
+      The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
       The purpose of the project was to create a system capable of monitoring its surroundings, detecting relevant events, recording audio,
-      and sending alerts or data to a remote user. The final implementation used a microphone connected through the ADC for sound
-      detection and recording, the built in accelerometer for tamper detection, and AWS IoT communication for sending notifications
-      and audio data. Audio was sampled by the microcontroller, converted into a compact 8 bit format, encoded into base64, divided
-      into chunks, and transmitted through the AWS IoT device shadow. A cloud side process was then intended to reassemble the audio
-      data into a WAV file and provide access to the user through email. The system also included a state machine for arming, monitoring,
-      recording, transmitting audio, and sending tamper alerts.</p>
-    </div>
-
-    <div class="box">
-      <div class="prompt">> loading section...</div>
-      <h2>// Background</h2>
-      <p>This project used the TI CC3200 LaunchPad as the main hardware platform for developing an embedded monitoring system.
+      and sending alerts or data to a remote user. TI CC3200 LaunchPad is used as the main hardware platform for developing an embedded monitoring system.
       The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement through the
       onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using
-      AWS IoT services. The intended features include audio capture, activity notifications, tamper alerts, and possible speech to
-      text functionality as a stretch goal. The plan was to also implement a high level state based workflow in which the device would
+      AWS IoT services.Audio was sampled by the microcontroller, converted into a compact 8 bit format, encoded into base64, divided
+      into chunks, and transmitted through the AWS IoT device shadow. A cloud side process was then intended to reassemble the audio
+      data into a WAV file and provide access to the user through email. The plan was to also implement a high level state based workflow in which the device would
       remain idle while monitoring, transition into recording or tamper states when triggered, and then notify the user before returning
       to monitoring. The final code met all these goals with the exception of text to speech by implementing a complete embedded state
       machine with disarmed, idle, recording, audio sending, tamper sending, and error states.</p>
@@ -198,7 +189,7 @@
 
     <div class="box">
       <div class="prompt">> loading section...</div>
-      <h2>// Discussion</h2>
+      <h2>// Challenges </h2>
       <p>The primary challenge we faced when implementing our design was the data limit of the device shadow.
       There was a hard set 8kB limit per post. At a reasonable sample rate that resulted in only 1 second of distinguishable audio
       being sent to the user. We explored a few different solutions including direct S3 bucket capture but ultimately ended up using
@@ -211,7 +202,7 @@
   <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
-      <h2>// Methods</h2>
+      <h2>// Implementation </h2>
       <p>All software development and testing were performed using Code Composer Studio and the TI CC3200 support libraries.
       The implementation used the SimpleLink networking stack, TI driver libraries, UART terminal output, ADC functions, GPIO access,
       timer delays, and I2C communication with the built in BMA222 accelerometer. The device behavior was organized using a state machine
