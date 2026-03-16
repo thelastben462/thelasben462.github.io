@@ -22,8 +22,7 @@
       50% { opacity: 0; }
     }
 
-    /* Gun barrel header */
-    .header-wrapper {
+        .header-wrapper {
       position: relative;
       width: 100%;
       height: 420px;
@@ -35,65 +34,66 @@
       overflow: hidden;
     }
 
-    /* Spiral rings */
     .ring {
       position: absolute;
       border-radius: 50%;
       border: solid white;
-      opacity: 0.15;
-      left: 50%;
+      right: 200px;
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateY(-50%);
     }
 
-    .ring-1 { width: 900px; height: 900px; border-width: 80px; opacity: 0.08; }
-    .ring-2 { width: 650px; height: 650px; border-width: 60px; opacity: 0.12; }
-    .ring-3 { width: 450px; height: 450px; border-width: 45px; opacity: 0.16; }
-    .ring-4 { width: 300px; height: 300px; border-width: 30px; opacity: 0.2; }
-    .ring-5 { width: 180px; height: 180px; border-width: 20px; opacity: 0.25; }
+    .ring-1 { width: 900px; height: 900px; border-width: 80px; opacity: 0.06; }
+    .ring-2 { width: 650px; height: 650px; border-width: 60px; opacity: 0.1; }
+    .ring-3 { width: 450px; height: 450px; border-width: 45px; opacity: 0.14; }
+    .ring-4 { width: 300px; height: 300px; border-width: 35px; opacity: 0.18; }
+    .ring-5 { width: 180px; height: 180px; border-width: 25px; opacity: 0.22; }
 
-    /* White circle center */
     .barrel-center {
       position: absolute;
-      width: 110px;
-      height: 110px;
+      width: 130px;
+      height: 130px;
       background: white;
       border-radius: 50%;
-      left: 50%;
+      right: 270px;
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateY(-50%);
       z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Title text on the right side */
     .header-content {
-      position: relative;
+      position: absolute;
+      right: 40px;
       z-index: 10;
       text-align: left;
-      padding-right: 80px;
-      padding-left: 40px;
-      max-width: 500px;
+      max-width: 420px;
+      background: white;
+      padding: 28px 32px;
+      border-radius: 12px;
     }
 
     .header-content h1 {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: bold;
-      letter-spacing: 8px;
+      letter-spacing: 6px;
       text-transform: uppercase;
-      color: #ffffff;
+      color: #000000;
     }
 
     .header-content .subtitle {
-      font-size: 12px;
-      color: #aaaaaa;
+      font-size: 11px;
+      color: #444444;
       margin-top: 8px;
       letter-spacing: 3px;
     }
 
     .header-content .authors {
-      margin-top: 12px;
-      font-size: 12px;
-      color: #cccccc;
+      margin-top: 10px;
+      font-size: 11px;
+      color: #333333;
       line-height: 1.8;
     }
 
@@ -184,7 +184,7 @@
 </head>
 <body>
 
-  <!-- Gun Barrel Header -->
+ <!-- Gun Barrel Header -->
   <div class="header-wrapper">
     <div class="ring ring-1"></div>
     <div class="ring ring-2"></div>
@@ -201,7 +201,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- Row 1: Project Description -->
   <div class="grid-full">
