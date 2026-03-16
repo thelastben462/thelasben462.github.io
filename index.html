@@ -258,26 +258,40 @@
   </div>
 
   <!-- Row 4: System Architecture + State Machine -->
-  <div class="grid">
-    <div class="box">
+  <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// System Architecture</h2>
-      <p>How the hardware and cloud components connect.</p>
+      <ul>
+        <li>TI CC3200 LaunchPad as the core hardware platform</li>
+        <li>Microphone connected through ADC channel 1 for sound detection and recording</li>
+        <li>Built-in BMA222 accelerometer via I2C for tamper detection</li>
+        <li>SW3 push button via GPIO for arming and disarming the device</li>
+        <li>Wi-Fi connection over HTTPS/TLS to AWS IoT device shadow</li>
+        <li>Lambda function triggered by IoT Rule to handle alerts and audio</li>
+        <li>S3 bucket stores audio chunks and reassembles into a WAV file</li>
+        <li>Presigned URL emailed to user for audio download</li>
+      </ul>
       <img src="RLDEEC172.drawio.png" alt="System Architecture Diagram"
       style="width:100%; margin-top:16px; border-radius:8px; border:1px solid #ffffff;">
     </div>
 
-    <div class="box">
+   <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// State Machine</h2>
-      <p>How the device transitions between operating states.</p>
+      <ul>
+        <li>Device begins in a disarmed state waiting for the user to press SW3 to arm it</li>
+        <li>Once armed, the system calibrates the microphone and accelerometer baselines</li>
+        <li>During idle monitoring, the system checks for button press, tamper, or noise events</li>
+        <li>If noise exceeds threshold, device enters recording state — about ~10 seconds at 4000 Hz</li>
+        <li>If accelerometer exceeds tamper threshold, device sends a tamper alert</li>
+        <li>After recording, device enters sending audio state and transmits 8 base64 chunks</li>
+      </ul>
       <img src="StateRLD.png" alt="State Machine Diagram"
       style="width:100%; margin-top:16px; border-radius:8px; border:1px solid #ffffff;">
     </div>
-  </div>
 
   <!-- Row 5: Bill of Materials -->
-  <div class="grid-full">
+<div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Bill of Materials</h2>
@@ -301,10 +315,10 @@
           </tr>
           <tr>
             <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">2</td>
-            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">Microphone</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">Electret Microphone Amplifier</td>
             <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">1</td>
             <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">$7.95</td>
-            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">—</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;"><a href="https://www.adafruit.com/product/1713">adafruit.com</a></td>
           </tr>
           <tr>
             <td style="border:1px solid #555555; padding:10px; color:#ffffff; font-weight:bold; font-size:14px;" colspan="3">Total</td>
@@ -313,36 +327,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-
-  <!-- Row 6: Contributions + Acknowledgments -->
-  <div class="grid">
-    <div class="box">
-      <div class="prompt">> loading section...</div>
-      <h2>// Contributions</h2>
-      <ul>
-        <li><strong>Theo:</strong> ADC sampling, state machine, tamper detection, base64 encoding</li>
-        <li><strong>Benjamin:</strong> Chunking architecture, Lambda function, S3 integration, AWS configuration</li>
-      </ul>
-    </div>
-
-    <div class="box">
-      <div class="prompt">> loading section...</div>
-      <h2>// Acknowledgments</h2>
-      <p>The authors would like to thank the EEC 172 course staff for their assistance and references provided throughout the lab.</p>
-    </div>
-  </div>
-
-  <!-- Row 7: References -->
-  <div class="grid-full">
-    <div class="box">
-      <div class="prompt">> loading section...</div>
-      <h2>// References</h2>
-      <ul>
-        <li><a href="https://www.ti.com/product/CC3200">Texas Instruments, "CC3200 SimpleLink Wi-Fi and IoT Solution with MCU Datasheet"</a></li>
-        <li><a href="https://software-dl.ti.com/ecs/cc31xx/APIs/public/cc32xx_peripherals/latest/html/index.html">Texas Instruments, "CC3200 Peripheral Driver Library User's Guide"</a></li>
-      </ul>
     </div>
   </div>
 
