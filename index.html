@@ -22,14 +22,12 @@
       50% { opacity: 0; }
     }
 
-    /* Triangle header wrapper */
     .header-wrapper {
       position: relative;
       margin-bottom: 60px;
       width: 100%;
     }
 
-    /* White filled triangle */
     .header {
       background-color: #ffffff;
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -38,7 +36,6 @@
       width: 100%;
     }
 
-    /* Second triangle SVG outline */
     .header-outline {
       position: absolute;
       top: 0;
@@ -48,7 +45,6 @@
       pointer-events: none;
     }
 
-    /* Black dot at the peak */
     .header-dot {
       position: absolute;
       top: -6px;
@@ -83,7 +79,6 @@
       color: #1a0f00;
     }
 
-    /* Two column grid */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -91,7 +86,6 @@
       margin-bottom: 28px;
     }
 
-    /* Single full width row */
     .grid-full {
       display: grid;
       grid-template-columns: 1fr;
@@ -99,7 +93,6 @@
       margin-bottom: 28px;
     }
 
-    /* Each box */
     .box {
       border: 1px solid #ffffff;
       padding: 28px;
@@ -123,9 +116,10 @@
     }
 
     .box p {
-      font-size: 17px;
+      font-size: 15px;
       color: #dddddd;
       text-align: left;
+      margin-bottom: 10px;
     }
 
     a {
@@ -144,13 +138,13 @@
 
     ul li::before {
       content: '> ';
-      color: #ffffff;
+      color: #aaaaaa;
     }
 
     ul li {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-size: 15px;
-      color: #ffffff;
+      color: #dddddd;
     }
 
     .footer {
@@ -183,7 +177,6 @@
         <p>Theo Rybnicek — tgrybnicek@ucdavis.edu</p>
       </div>
     </div>
-    <!-- SVG second triangle outline on top -->
     <svg class="header-outline" viewBox="0 0 100 100" preserveAspectRatio="none">
       <polygon points="50,1 1,99 99,99" fill="none" stroke="#1c1c1c" stroke-width="0.5"/>
     </svg>
@@ -194,17 +187,14 @@
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Project Description</h2>
-      <p>The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
-      The purpose of the project was to create a system capable of monitoring its surroundings, detecting relevant events, recording audio,
-      and sending alerts or data to a remote user. TI CC3200 LaunchPad is used as the main hardware platform for developing an embedded
-      monitoring system. The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement
-      through the onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using
-      AWS IoT services. Audio was sampled by the microcontroller, converted into a compact 8 bit format, encoded into base64, divided
-      into chunks, and transmitted through the AWS IoT device shadow. A cloud side process was then intended to reassemble the audio
-      data into a WAV file and provide access to the user through email. The plan was to also implement a high level state based workflow
-      in which the device would remain idle while monitoring, transition into recording or tamper states when triggered, and then notify
-      the user before returning to monitoring. The final code met all these goals with the exception of text to speech by implementing
-      a complete embedded state machine with disarmed, idle, recording, audio sending, tamper sending, and error states.</p>
+      <p>A smart remote listening device built on the TI CC3200 platform, designed to monitor surroundings, detect events, record audio, and send alerts to a remote user over Wi-Fi using AWS IoT services.</p>
+      <ul>
+        <li>Microphone connected via ADC for sound detection and recording</li>
+        <li>BMA222 accelerometer via I2C for tamper detection</li>
+        <li>Audio sampled, converted to 8-bit, base64 encoded, chunked, and sent via AWS IoT shadow</li>
+        <li>Cloud process reassembles chunks into a WAV file and emails a download link</li>
+        <li>State machine: disarmed → idle → recording → sending audio / tamper → error</li>
+      </ul>
     </div>
   </div>
 
@@ -213,23 +203,24 @@
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Goals</h2>
-      <p>The first goal of the project was to implement a minimal working monitoring device that could detect sound through a microphone
-      and capture raw audio data using the ADC. This required configuring the ADC on the CC3200, collecting samples, and storing them in
-      a memory buffer. The second goal was to extend the basic monitoring behavior by adding event driven system responses, specifically
-      activity triggered recording and tamper detection using the accelerometer. Another major goal was to send the resulting information
-      to a remote user through cloud services. In the final implementation, the system successfully incorporated sound threshold detection,
-      accelerometer based tamper detection, state based device arming and disarming through a pushbutton, and chunked base64 audio
-      transmission through the AWS IoT shadow.</p>
+      <ul>
+        <li>Detect sound via microphone and capture raw audio using the ADC</li>
+        <li>Event-driven responses — activity triggered recording and tamper detection</li>
+        <li>Transmit notifications and recorded audio to a remote user via AWS and email</li>
+        <li>Stretch goal: automatic speech-to-text conversion and keyword recognition</li>
+        <li>Final result: all core goals met except speech-to-text</li>
+      </ul>
     </div>
 
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Challenges</h2>
-      <p>The primary challenge we faced when implementing our design was the data limit of the device shadow.
-      There was a hard set 8kB limit per post. At a reasonable sample rate that resulted in only 1 second of distinguishable audio
-      being sent to the user. We explored a few different solutions including direct S3 bucket capture but ultimately ended up using
-      device memory to store larger recordings and then post them in multiple chunks. The quality of the microphone was also a minor
-      hiccup which made the sent audio higher pitched but still distinguishable.</p>
+      <ul>
+        <li>AWS IoT shadow has a hard 8kB limit per post — only ~1 second of audio at reasonable quality</li>
+        <li>Explored direct S3 capture; settled on chunking device memory into 8 posts</li>
+        <li>Lambda is stateless — used S3 to persist chunks across invocations</li>
+        <li>Microphone quality caused audio to be higher pitched but still distinguishable</li>
+      </ul>
     </div>
   </div>
 
@@ -238,19 +229,15 @@
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Implementation</h2>
-      <p>All software development and testing were performed using Code Composer Studio and the TI CC3200 support libraries.
-      The implementation used the SimpleLink networking stack, TI driver libraries, UART terminal output, ADC functions, GPIO access,
-      timer delays, and I2C communication with the built in BMA222 accelerometer. The device behavior was organized using a state machine
-      with the states disarmed, idle, recording, sending audio, sending tamper, and error. The system first initialized the board, pin
-      multiplexing, terminal, ADC, and accelerometer. It then connected to Wi-Fi, set the device time, and sent a startup notification
-      over TLS to AWS IoT. The device began in a disarmed state and waited for the user to press SW3 to arm it. Once armed, the program
-      calibrated both the microphone baseline and the accelerometer baseline so that future changes could be compared against normal
-      conditions. During monitoring, the system periodically checked for either a button press to disarm, a tamper event from the
-      accelerometer, or a noise event from the microphone input. The microphone was sampled through ADC channel 1. A baseline value
-      was first measured using a number of initial samples, and future audio input was compared against this average to determine
-      whether meaningful sound was present. By chunking the raw data bytes from the CC3200 to AWS, a Lambda function acts as the
-      cloud-side brain of the system. Lambda uses S3 buckets to extract stored chunks and once all 8 arrive, stitches them into the
-      original 40,000 byte audio sequence, appends a 44-byte WAV header, and generates a presigned URL emailed to the user.</p>
+      <p>Developed in Code Composer Studio using TI CC3200 support libraries. The system boots, connects to Wi-Fi, and enters a disarmed state waiting for SW3 to arm it.</p>
+      <ul>
+        <li><strong>Protocols:</strong> I2C (BMA222 accelerometer), ADC (microphone), GPIO (button), HTTPS/TLS (AWS)</li>
+        <li><strong>Microphone:</strong> Sampled on ADC channel 1 — baseline measured, deviation threshold triggers recording</li>
+        <li><strong>Recording:</strong> ~10 seconds at 4000 Hz, 14-bit samples reduced to 8-bit and stored in buffer</li>
+        <li><strong>Tamper:</strong> Accelerometer X/Y/Z read continuously — movement beyond threshold sends alert</li>
+        <li><strong>Chunking:</strong> Audio split into 8 base64 chunks, each posted to AWS IoT shadow separately</li>
+        <li><strong>Lambda:</strong> Triggered by IoT Rule — stores chunks in S3, reassembles on final chunk, appends 44-byte WAV header, emails presigned URL</li>
+      </ul>
     </div>
   </div>
 
@@ -259,7 +246,7 @@
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// System Architecture</h2>
-      <p>Overview of how the hardware and cloud components connect.</p>
+      <p>How the hardware and cloud components connect.</p>
       <img src="RLDEEC172.drawio.png" alt="System Architecture Diagram"
       style="width:100%; margin-top:16px; border-radius:8px; border:1px solid #ffffff;">
     </div>
@@ -273,7 +260,7 @@
     </div>
   </div>
 
-  <!-- Row: Bill of Materials -->
+  <!-- Row 5: Bill of Materials -->
   <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
@@ -310,6 +297,36 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Row 6: Contributions + Acknowledgments -->
+  <div class="grid">
+    <div class="box">
+      <div class="prompt">> loading section...</div>
+      <h2>// Contributions</h2>
+      <ul>
+        <li><strong>Theo:</strong> ADC sampling, state machine, tamper detection, base64 encoding</li>
+        <li><strong>Benjamin:</strong> Chunking architecture, Lambda function, S3 integration, AWS configuration</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="prompt">> loading section...</div>
+      <h2>// Acknowledgments</h2>
+      <p>The authors would like to thank the EEC 172 course staff for their assistance and references provided throughout the lab.</p>
+    </div>
+  </div>
+
+  <!-- Row 7: References -->
+  <div class="grid-full">
+    <div class="box">
+      <div class="prompt">> loading section...</div>
+      <h2>// References</h2>
+      <ul>
+        <li><a href="https://www.ti.com/product/CC3200">Texas Instruments, "CC3200 SimpleLink Wi-Fi and IoT Solution with MCU Datasheet"</a></li>
+        <li><a href="https://software-dl.ti.com/ecs/cc31xx/APIs/public/cc32xx_peripherals/latest/html/index.html">Texas Instruments, "CC3200 Peripheral Driver Library User's Guide"</a></li>
+      </ul>
     </div>
   </div>
 
