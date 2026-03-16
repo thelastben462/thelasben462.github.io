@@ -187,17 +187,33 @@
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Project Description</h2>
-      <p>A smart remote listening device built on the TI CC3200 platform, designed to monitor surroundings, detect events, record audio, and send alerts to a remote user over Wi-Fi using AWS IoT services.</p>
-      <ul>
-        <li>Microphone connected via ADC for sound detection and recording</li>
-        <li>BMA222 accelerometer via I2C for tamper detection</li>
-        <li>Audio sampled, converted to 8-bit, base64 encoded, chunked, and sent via AWS IoT shadow</li>
-        <li>Cloud process reassembles chunks into a WAV file and emails a download link</li>
-        <li>State machine: disarmed → idle → recording → sending audio / tamper → error</li>
-      </ul>
+      <p>The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
+      The purpose of the project was to create a system capable of monitoring its surroundings, detecting relevant events, recording audio,
+      and sending alerts or data to a remote user. TI CC3200 LaunchPad is used as the main hardware platform for developing an embedded
+      monitoring system. The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement
+      through the onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using
+      AWS IoT services. Audio was sampled by the microcontroller, converted into a compact 8 bit format, encoded into base64, divided
+      into chunks, and transmitted through the AWS IoT device shadow. A cloud side process was then intended to reassemble the audio
+      data into a WAV file and provide access to the user through email. The plan was to also implement a high level state based workflow
+      in which the device would remain idle while monitoring, transition into recording or tamper states when triggered, and then notify
+      the user before returning to monitoring. The final code met all these goals with the exception of text to speech by implementing
+      a complete embedded state machine with disarmed, idle, recording, audio sending, tamper sending, and error states.</p>
     </div>
   </div>
 
+<!-- Row: Video Demo -->
+  <div class="grid-full">
+    <div class="box">
+      <div class="prompt">> loading section...</div>
+      <h2>// Video Demo</h2>
+      <p>Live demonstration of the smart remote listening device.</p>
+      <iframe width="100%" height="500"
+      src="https://www.youtube.com/embed/1YlKs24advI"
+      style="margin-top:16px; border-radius:8px; border:1px solid #ffffff;"
+      allowfullscreen>
+    </iframe>
+    </div>
+  </div>
   <!-- Row 2: Goals + Challenges -->
   <div class="grid">
     <div class="box">
