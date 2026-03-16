@@ -12,7 +12,7 @@
     body {
       background-color: #1c1c1c;
       font-family: 'Courier New', Courier, monospace;
-      color:  #ffffff;
+      color: #ffffff;
       padding: 40px;
       line-height: 1.9;
     }
@@ -22,14 +22,43 @@
       50% { opacity: 0; }
     }
 
-    /* Triangle header */
+    /* Triangle header wrapper */
+    .header-wrapper {
+      position: relative;
+      margin-bottom: 60px;
+      width: 100%;
+    }
+
+    /* White filled triangle */
     .header {
-      background-color:  #ffffff;
+      background-color: #ffffff;
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       text-align: center;
       padding: 80px 40px 60px;
-      margin-bottom: 60px;
       width: 100%;
+    }
+
+    /* Second triangle SVG outline */
+    .header-outline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Black dot at the peak */
+    .header-dot {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background-color: #1c1c1c;
+      border-radius: 50%;
+      z-index: 10;
     }
 
     .header h1 {
@@ -72,7 +101,7 @@
 
     /* Each box */
     .box {
-      border: 1px solid  #ffffff;
+      border: 1px solid #ffffff;
       padding: 28px;
       border-radius: 12px;
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.15),
@@ -87,7 +116,7 @@
 
     .box h2 {
       font-size: 17px;
-      color:  #ffffff;
+      color: #ffffff;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -100,12 +129,12 @@
     }
 
     a {
-      color:  #ffffff;
+      color: #ffffff;
       text-decoration: underline;
     }
 
     a:hover {
-      color: #ffffff;
+      color: #aaaaaa;
     }
 
     ul {
@@ -137,43 +166,49 @@
     .blink {
       animation: blink 1s infinite;
       display: inline-block;
-      color:  #ffffff;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
 
   <!-- Triangle Header -->
-  <div class="header">
-    <h1>Smart Remote<br>Listening Device</h1>
-    <div class="subtitle">[ EEC 172 — UC DAVIS ]</div>
-    <div class="authors">
-      <p>Benjamin Lee — blelee@ucdavis.edu</p>
-      <p>Theo Rybnicek — tgrybnicek@ucdavis.edu</p>
+  <div class="header-wrapper">
+    <div class="header-dot"></div>
+    <div class="header">
+      <h1>Smart Remote<br>Listening Device</h1>
+      <div class="subtitle">[ EEC 172 — UC DAVIS ]</div>
+      <div class="authors">
+        <p>Benjamin Lee — blelee@ucdavis.edu</p>
+        <p>Theo Rybnicek — tgrybnicek@ucdavis.edu</p>
+      </div>
     </div>
+    <!-- SVG second triangle outline on top -->
+    <svg class="header-outline" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon points="50,1 1,99 99,99" fill="none" stroke="#1c1c1c" stroke-width="0.5"/>
+    </svg>
   </div>
 
-  <!-- Row 1: Abstract + Background -->
+  <!-- Row 1: Project Description -->
   <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
       <h2>// Project Description</h2>
-      <p>      
-      The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
+      <p>The final project consisted of designing and implementing a smart remote listening device using the TI CC3200 platform.
       The purpose of the project was to create a system capable of monitoring its surroundings, detecting relevant events, recording audio,
-      and sending alerts or data to a remote user. TI CC3200 LaunchPad is used as the main hardware platform for developing an embedded monitoring system.
-      The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement through the
-      onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using
-      AWS IoT services.Audio was sampled by the microcontroller, converted into a compact 8 bit format, encoded into base64, divided
+      and sending alerts or data to a remote user. TI CC3200 LaunchPad is used as the main hardware platform for developing an embedded
+      monitoring system. The system was designed around the idea of detecting nearby activity through sound and detecting unwanted movement
+      through the onboard accelerometer. When activity was detected, the device would record audio samples and transmit them over Wi-Fi using
+      AWS IoT services. Audio was sampled by the microcontroller, converted into a compact 8 bit format, encoded into base64, divided
       into chunks, and transmitted through the AWS IoT device shadow. A cloud side process was then intended to reassemble the audio
-      data into a WAV file and provide access to the user through email. The plan was to also implement a high level state based workflow in which the device would
-      remain idle while monitoring, transition into recording or tamper states when triggered, and then notify the user before returning
-      to monitoring. The final code met all these goals with the exception of text to speech by implementing a complete embedded state
-      machine with disarmed, idle, recording, audio sending, tamper sending, and error states.</p>
+      data into a WAV file and provide access to the user through email. The plan was to also implement a high level state based workflow
+      in which the device would remain idle while monitoring, transition into recording or tamper states when triggered, and then notify
+      the user before returning to monitoring. The final code met all these goals with the exception of text to speech by implementing
+      a complete embedded state machine with disarmed, idle, recording, audio sending, tamper sending, and error states.</p>
     </div>
   </div>
 
-  <!-- Row 2: Goals + Discussion -->
+  <!-- Row 2: Goals + Challenges -->
   <div class="grid">
     <div class="box">
       <div class="prompt">> loading section...</div>
@@ -189,7 +224,7 @@
 
     <div class="box">
       <div class="prompt">> loading section...</div>
-      <h2>// Challenges </h2>
+      <h2>// Challenges</h2>
       <p>The primary challenge we faced when implementing our design was the data limit of the device shadow.
       There was a hard set 8kB limit per post. At a reasonable sample rate that resulted in only 1 second of distinguishable audio
       being sent to the user. We explored a few different solutions including direct S3 bucket capture but ultimately ended up using
@@ -198,11 +233,11 @@
     </div>
   </div>
 
-  <!-- Row 3: Methods (full width) -->
+  <!-- Row 3: Implementation (full width) -->
   <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
-      <h2>// Implementation </h2>
+      <h2>// Implementation</h2>
       <p>All software development and testing were performed using Code Composer Studio and the TI CC3200 support libraries.
       The implementation used the SimpleLink networking stack, TI driver libraries, UART terminal output, ADC functions, GPIO access,
       timer delays, and I2C communication with the built in BMA222 accelerometer. The device behavior was organized using a state machine
@@ -218,8 +253,8 @@
       original 40,000 byte audio sequence, appends a 44-byte WAV header, and generates a presigned URL emailed to the user.</p>
     </div>
   </div>
-  <!-- Row 1: Structure and State diagrams -->
-<!-- Row: Structure and State diagrams -->
+
+  <!-- Row 4: System Architecture + State Machine -->
   <div class="grid">
     <div class="box">
       <div class="prompt">> loading section...</div>
@@ -237,31 +272,44 @@
       style="width:100%; margin-top:16px; border-radius:8px; border:1px solid #ffffff;">
     </div>
   </div>
-  <!-- Row 4: Contributions + Acknowledgments -->
-  <div class="grid">
-    <div class="box">
-      <div class="prompt">> loading section...</div>
-      <h2>// Contributions</h2>
-      <p>Theo implemented the ADC sampling, state machine, tamper detection, and base64 encoding method within Code Composer
-      while Benjamin handled the chunking architecture and Lambda implementation with S3 buckets in AWS.</p>
-    </div>
 
-    <div class="box">
-      <div class="prompt">> loading section...</div>
-      <h2>// Acknowledgments</h2>
-      <p>The authors would like to thank the EEC 172 course staff regarding their assistance and providing references used for the lab.</p>
-    </div>
-  </div>
-
-  <!-- Row 5: References (full width) -->
+  <!-- Row: Bill of Materials -->
   <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
-      <h2>// References</h2>
-      <ul>
-        <li><a href="https://www.ti.com/product/CC3200">Texas Instruments, "CC3200 SimpleLink Wi-Fi and IoT Solution with MCU Datasheet"</a></li>
-        <li><a href="https://software-dl.ti.com/ecs/cc31xx/APIs/public/cc32xx_peripherals/latest/html/index.html">Texas Instruments, "CC3200 Peripheral Driver Library User's Guide"</a></li>
-      </ul>
+      <h2>// Bill of Materials</h2>
+      <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+        <thead>
+          <tr>
+            <th style="border:1px solid #ffffff; padding:10px; text-align:left; color:#ffffff; font-size:14px;">#</th>
+            <th style="border:1px solid #ffffff; padding:10px; text-align:left; color:#ffffff; font-size:14px;">Item</th>
+            <th style="border:1px solid #ffffff; padding:10px; text-align:left; color:#ffffff; font-size:14px;">Quantity</th>
+            <th style="border:1px solid #ffffff; padding:10px; text-align:left; color:#ffffff; font-size:14px;">Cost</th>
+            <th style="border:1px solid #ffffff; padding:10px; text-align:left; color:#ffffff; font-size:14px;">Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">1</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">TI CC3200 LaunchPad</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">1</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">$66.00</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;"><a href="https://www.ti.com/product/CC3200">ti.com</a></td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">2</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">Microphone</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">1</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">$7.95</td>
+            <td style="border:1px solid #555555; padding:10px; color:#dddddd; font-size:14px;">—</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #555555; padding:10px; color:#ffffff; font-weight:bold; font-size:14px;" colspan="3">Total</td>
+            <td style="border:1px solid #555555; padding:10px; color:#ffffff; font-weight:bold; font-size:14px;">$73.95</td>
+            <td style="border:1px solid #555555; padding:10px;"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
