@@ -12,9 +12,9 @@
     body {
       background-color: #000000;
       font-family: 'Courier New', Courier, monospace;
-      color: #ffffff;
+      color: #ffb347;
       padding: 40px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     @keyframes blink {
@@ -24,8 +24,7 @@
 
     /* Triangle header */
     .header {
-      background-color: #ffffff;
-      color: #000000;
+      background-color: #ffb347;
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       text-align: center;
       padding: 80px 40px 60px;
@@ -44,7 +43,7 @@
 
     .header .subtitle {
       font-size: 12px;
-      color: #333333;
+      color: #1a0f00;
       margin-top: 8px;
       letter-spacing: 3px;
     }
@@ -52,58 +51,61 @@
     .header .authors {
       margin-top: 12px;
       font-size: 12px;
-      color: #222222;
+      color: #1a0f00;
     }
 
     /* Two column grid */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
+      gap: 28px;
+      margin-bottom: 28px;
     }
 
     /* Single full width row */
     .grid-full {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
+      gap: 28px;
+      margin-bottom: 28px;
     }
 
     /* Each box */
     .box {
-      border: 1px solid #ffffff;
-      padding: 24px;
-      border-radius: 4px;
+      border: 1px solid #ffb347;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 179, 71, 0.3),
+                  0 0 24px rgba(255, 179, 71, 0.1);
     }
 
     .prompt {
-      color: #666666;
+      color: #7a4f00;
       font-size: 13px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .box h2 {
-      font-size: 16px;
-      color: #ffffff;
+      font-size: 17px;
+      color: #ffb347;
       letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .box p {
-      font-size: 13px;
-      color: #cccccc;
+      font-size: 15px;
+      color: #e09030;
+      text-align: left;
     }
 
     a {
-      color: #ffffff;
+      color: #ffb347;
       text-decoration: underline;
     }
 
     a:hover {
-      color: #aaaaaa;
+      color: #ffffff;
     }
 
     ul {
@@ -113,21 +115,21 @@
 
     ul li::before {
       content: '> ';
-      color: #666666;
+      color: #7a4f00;
     }
 
     ul li {
-      margin-bottom: 8px;
-      font-size: 13px;
-      color: #cccccc;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #e09030;
     }
 
     .footer {
       margin-top: 40px;
-      border-top: 1px solid #333333;
+      border-top: 1px solid #3a2000;
       padding-top: 20px;
       font-size: 12px;
-      color: #555555;
+      color: #7a4f00;
       text-align: center;
       letter-spacing: 2px;
     }
@@ -135,6 +137,7 @@
     .blink {
       animation: blink 1s infinite;
       display: inline-block;
+      color: #ffb347;
     }
   </style>
 </head>
