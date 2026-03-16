@@ -22,78 +22,98 @@
       50% { opacity: 0; }
     }
 
-        .header-wrapper {
+    .header-wrapper {
       position: relative;
       width: 100%;
-      height: 420px;
       background: #000000;
       display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin-bottom: 60px;
-      overflow: hidden;
-    }
-
-    .ring {
-      position: absolute;
-      border-radius: 50%;
-      border: solid white;
-      right: 200px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .ring-1 { width: 900px; height: 900px; border-width: 80px; opacity: 0.06; }
-    .ring-2 { width: 650px; height: 650px; border-width: 60px; opacity: 0.1; }
-    .ring-3 { width: 450px; height: 450px; border-width: 45px; opacity: 0.14; }
-    .ring-4 { width: 300px; height: 300px; border-width: 35px; opacity: 0.18; }
-    .ring-5 { width: 180px; height: 180px; border-width: 25px; opacity: 0.22; }
-
-    .barrel-center {
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      background: white;
-      border-radius: 50%;
-      right: 270px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      margin-bottom: 60px;
+      overflow: hidden;
+      padding: 40px 0 50px;
+    }
+
+    .eye {
+      position: relative;
+      width: 280px;
+      height: 120px;
+      margin-bottom: 30px;
+    }
+
+    .eyelid-top {
+      position: absolute;
+      width: 280px;
+      height: 60px;
+      border-top: 2px solid #ffffff;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      top: 0;
+      left: 0;
+      z-index: 4;
+    }
+
+    .eyelid-bottom {
+      position: absolute;
+      width: 280px;
+      height: 60px;
+      border-bottom: 2px solid #ffffff;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      bottom: 0;
+      left: 0;
+      z-index: 4;
+    }
+
+    .iris {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      background: #1a1a1a;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .pupil {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
     }
 
     .header-content {
-      position: absolute;
-      right: 40px;
+      position: relative;
       z-index: 10;
-      text-align: left;
-      max-width: 420px;
-      background: white;
-      padding: 28px 32px;
-      border-radius: 12px;
+      text-align: center;
     }
 
     .header-content h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: bold;
-      letter-spacing: 6px;
+      letter-spacing: 8px;
       text-transform: uppercase;
-      color: #000000;
+      color: #ffffff;
     }
 
     .header-content .subtitle {
-      font-size: 11px;
-      color: #444444;
+      font-size: 12px;
+      color: #aaaaaa;
       margin-top: 8px;
       letter-spacing: 3px;
     }
 
     .header-content .authors {
-      margin-top: 10px;
-      font-size: 11px;
-      color: #333333;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #cccccc;
       line-height: 1.8;
     }
 
@@ -184,14 +204,14 @@
 </head>
 <body>
 
- <!-- Gun Barrel Header -->
+  <!-- Eye Header -->
   <div class="header-wrapper">
-    <div class="ring ring-1"></div>
-    <div class="ring ring-2"></div>
-    <div class="ring ring-3"></div>
-    <div class="ring ring-4"></div>
-    <div class="ring ring-5"></div>
-    <div class="barrel-center"></div>
+    <div class="eye">
+      <div class="eyelid-top"></div>
+      <div class="eyelid-bottom"></div>
+      <div class="iris"></div>
+      <div class="pupil"></div>
+    </div>
     <div class="header-content">
       <h1>Smart Remote<br>Listening Device</h1>
       <div class="subtitle">[ EEC 172 — UC DAVIS ]</div>
@@ -221,7 +241,7 @@
     </div>
   </div>
 
-<!-- Row: Video Demo -->
+  <!-- Row: Video Demo -->
   <div class="grid-full">
     <div class="box">
       <div class="prompt">> loading section...</div>
@@ -231,9 +251,10 @@
       src="https://www.youtube.com/embed/1YlKs24advI"
       style="margin-top:16px; border-radius:8px; border:1px solid #ffffff;"
       allowfullscreen>
-    </iframe>
+      </iframe>
     </div>
   </div>
+
   <!-- Row 2: Goals + Challenges -->
   <div class="grid">
     <div class="box">
@@ -278,7 +299,6 @@
   </div>
 
   <!-- Row 4: System Architecture + State Machine -->
- <!-- Row 4: System Architecture + State Machine -->
   <div class="grid">
     <div class="box">
       <div class="prompt">> loading section...</div>
@@ -313,7 +333,7 @@
     </div>
   </div>
 
-<!-- Row: Future Work + Bill of Materials -->
+  <!-- Row: Future Work + Bill of Materials -->
   <div class="grid">
     <div class="box">
       <div class="prompt">> loading section...</div>
